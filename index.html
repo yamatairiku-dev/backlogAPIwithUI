@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Backlog API Scripts</title>
+    <style>
+        body { font-family: sans-serif; }
+        .container { max-width: 800px; margin: 0 auto; padding: 20px; }
+        .script-list { list-style: none; padding: 0; }
+        .script-list li { margin-bottom: 10px; }
+        #output { white-space: pre-wrap; background-color: #f4f4f4; padding: 15px; border: 1px solid #ddd; }
+        #readme { background-color: #f4f4f4; padding: 15px; border: 1px solid #ddd; }
+        .input-group {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        .input-group label {
+            margin-right: 10px;
+        }
+        .styled-input {
+            padding: 8px 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 14px;
+            width: 80px;
+        }
+        .styled-button {
+            background-color: #f0f0f0;
+            color: black;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            margin-bottom: 10px; /* Add some margin for spacing */
+        }
+        .styled-button:hover {
+            background-color: #e0e0e0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Backlog API Scripts</h1>
+        <div class="input-group">
+            <label for="not-logged-in-days">最近ログインしていない日数:</label>
+            <input type="number" id="not-logged-in-days" class="styled-input" value="0" min="0">
+        </div>
+        <ul id="script-list" class="script-list"></ul>
+        <h2>Output</h2>
+        <pre id="output"></pre>
+
+        <h2>Downloadable Files</h2>
+        <button id="refresh-files" class="styled-button">Refresh Files</button>
+        <ul id="output-files" class="script-list"></ul>
+
+        <h2>Readme.md</h2>
+        <div id="readme"></div>
+    </div>
+    <script>
+        const scriptList = document.getElementById('script-list');
+        const output = document.getElementById('output');
+        const outputFiles = document.getElementById('output-files');
+        const refreshButton = document.getElementById('refresh-files');
+        const readmeDiv = document.getElementById('readme');
+
+        function fetchScripts() {
+            fetch('/api/scripts')
+                .then(response => response.json())
+                .then(scripts => {
+                    scriptList.innerHTML = '';
+                    scripts.forEach(script => {
+                        const li = document.createElement('li');
+                        const button = document.createElement('button');
+                        button.textContent = script;
+                        button.className = 'styled-button';
+                        button.addEventListener('click', () => {
+                            const notLoggedInDays = document.getElementById('not-logged-in-days').value;
+                            output.textContent = 'Executing...';
+                            fetch(`/api/run/${script}?notLoggedInDays=${notLoggedInDays}`)
+                                .then(response => response.text())
+                                .then(data => {
+                                    output.textContent = data;
+                                    fetchOutputFiles(); // Refresh file list after execution
+                                })
+                                .catch(error => {
+                                    output.textContent = `Error: ${error}`;
+                                });
+                        });
+                        li.appendChild(button);
+                        scriptList.appendChild(li);
+                    });
+                });
+        }
+
+        function fetchOutputFiles() {
+            fetch('/api/output-files')
+                .then(response => response.json())
+                .then(files => {
+                    outputFiles.innerHTML = '';
+                    files.forEach(file => {
+                        const li = document.createElement('li');
+                        const a = document.createElement('a');
+                        a.textContent = file;
+                        a.href = `/output/${file}`;
+                        a.download = file;
+                        li.appendChild(a);
+                        outputFiles.appendChild(li);
+                    });
+                });
+        }
+
+        function fetchReadme() {
+            fetch('/api/readme')
+                .then(response => response.text())
+                .then(data => {
+                    readmeDiv.innerHTML = data;
+                });
+        }
+
+        refreshButton.addEventListener('click', fetchOutputFiles);
+
+        fetchScripts();
+        fetchOutputFiles();
+        fetchReadme();
+    </script>
+</body>
+</html>
