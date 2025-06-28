@@ -30,8 +30,9 @@
 ### 機能
 プロジェクトに参加していないユーザーを出力する　=> usersForDelete.csv
 # 環境変数
-MY_SPACE = 'スペースのURL（末尾のスラッシュは無し）'
-API_KEY = '管理者権限のAPIキー'
-EXCLUSION_PROJECTS = ['ユーザー取得を除外するプロジェクトのIDの配列']
-NOT_LOGGED_IN_DAYS = 最近ログインしていない期間（日数を数字で）
-PORT = ポート番号（デフォルトは3000）
+## ローカル環境で動かす時には.envファイルに設定する
+MY_SPACE = 'スペースのURL（末尾のスラッシュは無し）'  
+API_KEY = '管理者権限のAPIキー'  
+EXCLUSION_PROJECTS = ['ユーザー取得を除外するプロジェクトのIDの配列']  
+PORT = ポート番号（デフォルトは3000）  
+NOT_LOGGED_IN_DAYS = 最近ログインしていない日数（UIの入力値で上書きされる）  

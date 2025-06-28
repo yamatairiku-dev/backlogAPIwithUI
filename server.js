@@ -66,7 +66,8 @@ app.get("/api/output-files", (req, res) => {
       res.status(500).send("Error reading output directory");
       return;
     }
-    const filteredFiles = files.filter((file) => file !== ".gitkeep");
+    const excludeFiles = [".gitkeep", ".DS_Store"];
+    const filteredFiles = files.filter((file) => !excludeFiles.includes(file));
     res.json(filteredFiles);
   });
 });

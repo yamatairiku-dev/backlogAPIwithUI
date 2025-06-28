@@ -5,8 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Backlog API Scripts</title>
     <style>
-        body { font-family: sans-serif; }
-        .container { max-width: 800px; margin: 0 auto; padding: 20px; }
+        body { font-family: sans-serif; display: flex; margin: 0; min-height: 100vh; }
+        .sidebar { width: 300px; background-color: #ffffff; padding: 20px; border-right: 1px solid #ccc; box-sizing: border-box; }
+        .container { flex: 1; padding: 20px; }
         .script-list { list-style: none; padding: 0; }
         .script-list li { margin-bottom: 10px; }
         #output { white-space: pre-wrap; background-color: #f4f4f4; padding: 15px; border: 1px solid #ddd; }
@@ -36,26 +37,33 @@
             font-size: 14px;
             margin-bottom: 10px; /* Add some margin for spacing */
         }
+        .sidebar .styled-button {
+            width: 100%;
+        }
         .styled-button:hover {
             background-color: #e0e0e0;
         }
     </style>
 </head>
 <body>
+    <div class="sidebar">
+        <h2>Scripts</h2>
+        <ul id="script-list" class="script-list"></ul>
+    </div>
     <div class="container">
         <h1>Backlog API Scripts</h1>
         <div class="input-group">
             <label for="not-logged-in-days">最近ログインしていない日数:</label>
             <input type="number" id="not-logged-in-days" class="styled-input" value="0" min="0">
         </div>
-        <ul id="script-list" class="script-list"></ul>
-        <h2>Output</h2>
-        <pre id="output"></pre>
-
+        
         <h2>Downloadable Files</h2>
         <button id="refresh-files" class="styled-button">Refresh Files</button>
         <ul id="output-files" class="script-list"></ul>
-
+        
+        <h2>Output</h2>
+        <pre id="output"></pre>
+        
         <h2>Readme.md</h2>
         <div id="readme"></div>
     </div>
