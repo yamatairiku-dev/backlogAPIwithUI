@@ -1,9 +1,9 @@
-"use strict";
+import axios from "axios";
+import fs from "fs";
+import "dotenv/config";
+
 const startTime = Date.now();
-const axios = require("axios");
-const fs = require("fs");
 const output = "./output";
-require("dotenv").config();
 
 // ユーザー取得を除外するプロジェクト
 const exclusionProjects = process.env.EXCLUSION_PROJECTS;

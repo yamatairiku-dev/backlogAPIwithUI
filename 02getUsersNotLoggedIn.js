@@ -1,8 +1,8 @@
-"use strict";
-const axios = require("axios");
-const fs = require("fs");
+import axios from "axios";
+import fs from "fs";
+import "dotenv/config";
+
 const output = "./output";
-require("dotenv").config();
 
 const now = Date.now();
 const standardDate = now - process.env.NOT_LOGGED_IN_DAYS * 24 * 60 * 60 * 1000;

@@ -1,9 +1,13 @@
-const express = require("express");
-const { spawn } = require("child_process");
-const fs = require("fs");
-const path = require("path");
-const { marked } = require("marked");
-require("dotenv").config();
+import express from "express";
+import { spawn } from "child_process";
+import fs from "fs";
+import path, { dirname } from "path";
+import { fileURLToPath } from "url";
+import { marked } from "marked";
+import "dotenv/config";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 const app = express();
 const port = process.env.PORT || 3000;

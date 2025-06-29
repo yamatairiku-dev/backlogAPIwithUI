@@ -1,9 +1,10 @@
-"use strict";
-const axios = require("axios");
-const fs = require("fs");
+import axios from "axios";
+import fs from "fs";
+import "dotenv/config";
+const projectIDs = JSON.parse(
+  fs.readFileSync("./output/projectIDs.json", "utf8")
+);
 const output = "./output";
-require("dotenv").config();
-const projectIDs = require(`${output}/projectIDs.json`);
 
 const pjMember = [];
 let userCSVs = "";

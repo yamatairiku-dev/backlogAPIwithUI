@@ -1,7 +1,8 @@
-const fs = require("fs");
+import fs from "fs";
+const pjMember = JSON.parse(fs.readFileSync("./output/pjMember.json", "utf8"));
+const users = JSON.parse(fs.readFileSync("./output/userIDs.json", "utf8"));
+
 const output = "./output";
-const pjMember = require(`${output}/pjMember.json`);
-const users = require(`${output}/userIDs.json`);
 
 const activeUserIDs = [];
 pjMember.map((e) => e.map((e) => activeUserIDs.push(e[0])));
