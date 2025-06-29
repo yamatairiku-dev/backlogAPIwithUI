@@ -7,7 +7,8 @@
 しばらくログインしていないユーザーを出力する　=> getUsersNotLoggedIn.csv
 ## 03getUsersNotLoggedInWithPjInfo.js
 ### 機能
-しばらくログインしていないユーザーを出力する（プロジェクト名付き、延べユーザー）=> usersToBeDeletedWithPjInfo.csv
+しばらくログインしていないユーザーを出力する（プロジェクト名付き、延べユーザー）=> usersToBeDeletedWithPjInfo.csv  
+注意：除外プロジェクト以外のプロジェクトに参加していないユーザーは出力されない => 01getUsersToBeDeleted.jsの出力を参照
 ## 04getProjectAdmins.js
 ### 機能
 プロジェクト管理者の一覧をを出力する（プロジェクト管理者の設定は任意のためプロジェクト管理者が設定されていないプロジェクトが多い）=> adminsWithPjInfo.csv
