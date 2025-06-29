@@ -1,0 +1,17 @@
+version: '3.1'
+services: 
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: backlog-api-ui
+    hostname: backlog-api-ui
+    environment:
+      - MY_SPACE=${MY_SPACE}
+      - API_KEY=${API_KEY}
+      - EXCLUSION_PROJECTS=${EXCLUSION_PROJECTS}
+      - NOT_LOGGED_IN_DAYS=${NOT_LOGGED_IN_DAYS}
+    restart: always
+    ports:
+      - 3000:3000
+    tty: true
