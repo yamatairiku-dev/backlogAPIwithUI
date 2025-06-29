@@ -31,6 +31,7 @@ allProjects
     const projectKeys = result.data
       .map((e) => e.projectKey) // プロジェクトの情報からプロジェクトID（key）を取得
       .filter((val) => !exclusionProjects.includes(val)); // 環境変数で指定したプロジェクトIDを除外
+    console.log("除外プロジェクト: ", exclusionProjects);
     console.log("プロジェクト数: ", projectKeys.length);
     // プロジェクト情報一覧
     const projectNames = result.data.map((e) => [e.projectKey, e.name]);
@@ -91,7 +92,7 @@ allProjects
         (e) => (getUsersNotLoggedInWithPjInfoCSV += e.join(",") + "\n")
       );
       fs.writeFileSync(
-        `${output}/usersToBeDeletedWithPjInfo.csv`,
+        `${output}/03usersToBeDeletedWithPjInfo.csv`,
         getUsersNotLoggedInWithPjInfoCSV
       );
       console.log("done");

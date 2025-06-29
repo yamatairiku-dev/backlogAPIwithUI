@@ -32,7 +32,7 @@ const asyncFunc = async () => {
   usersNotLoggedIn.unshift(headerString);
   let usersNotLoggedInCSV = "";
   usersNotLoggedIn.map((e) => (usersNotLoggedInCSV += e.join(",") + "\n"));
-  fs.writeFileSync(`${output}/usersNotLoggedIn.csv`, usersNotLoggedInCSV);
+  fs.writeFileSync(`${output}/02usersNotLoggedIn.csv`, usersNotLoggedInCSV);
 };
 
 asyncFunc().finally(() => console.log("done"));

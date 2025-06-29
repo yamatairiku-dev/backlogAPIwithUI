@@ -7,6 +7,7 @@ const output = "./output";
 
 // ユーザー取得を除外するプロジェクト
 const exclusionProjects = process.env.EXCLUSION_PROJECTS;
+console.log("除外プロジェクト: ", exclusionProjects);
 
 // 全ユーザーの情報を取得(プロミス)
 const allUsers = axios.get(
@@ -103,7 +104,7 @@ Promise.all([getAllUsers(), getActiveUsers()])
     // CSVファイルとして出力
     let usersToBeDeletedCSV = "";
     usersToBeDeleted.map((e) => (usersToBeDeletedCSV += e.join(",") + "\n"));
-    fs.writeFileSync(`${output}/usersToBeDeleted.csv`, usersToBeDeletedCSV);
+    fs.writeFileSync(`${output}/01usersToBeDeleted.csv`, usersToBeDeletedCSV);
     console.log("done");
     const endTime = Date.now();
     console.log("実行時間（ミリ秒）: ", endTime - startTime);

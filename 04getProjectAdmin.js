@@ -45,7 +45,7 @@ allProjects
       const adminsWithPjInfo = []; // PJ情報を付加したユーザー一覧
       for (let i = 0; i < projectKeys.length; i++) {
         adminsByPJ[i].map((e) =>
-        adminsWithPjInfo.push([
+          adminsWithPjInfo.push([
             e.id,
             e.name,
             e.mailAddress,
@@ -57,10 +57,7 @@ allProjects
       }
 
       console.log(adminsWithPjInfo);
-      console.log(
-        `プロジェクト管理者数: `,
-        adminsWithPjInfo.length
-      );
+      console.log(`プロジェクト管理者数: `, adminsWithPjInfo.length);
       // 日付フォーマットを整える
       // sv-SEロケールはYYYY-MM-DD形式の日付文字列を返す
       adminsWithPjInfo.map((e) => (e[3] = e[3].toLocaleDateString("sv-SE")));
@@ -76,13 +73,8 @@ allProjects
       adminsWithPjInfo.unshift(headerString);
       // CSVファイルとして出力
       let adminsWithPjInfoCSV = "";
-      adminsWithPjInfo.map(
-        (e) => (adminsWithPjInfoCSV += e.join(",") + "\n")
-      );
-      fs.writeFileSync(
-        `${output}/adminsWithPjInfo.csv`,
-        adminsWithPjInfoCSV
-      );
+      adminsWithPjInfo.map((e) => (adminsWithPjInfoCSV += e.join(",") + "\n"));
+      fs.writeFileSync(`${output}/04adminsWithPjInfo.csv`, adminsWithPjInfoCSV);
       console.log("done");
       const endTime = Date.now();
       console.log("実行時間（ミリ秒）: ", endTime - startTime);
