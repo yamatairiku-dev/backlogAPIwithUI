@@ -11,7 +11,7 @@
 注意：除外プロジェクト以外のプロジェクトに参加していないユーザーは出力されない => 01getUsersToBeDeleted.jsの出力を参照
 ## 04getProjectAdmins.js
 ### 機能
-プロジェクト管理者の一覧をを出力する（プロジェクト管理者の設定は任意のためプロジェクト管理者が設定されていないプロジェクトが多い）=> adminsWithPjInfo.csv
+プロジェクト管理者の一覧を出力する（プロジェクト管理者の設定は任意のためプロジェクト管理者が設定されていないプロジェクトが多い）=> adminsWithPjInfo.csv
 
 # 分割処理（一括処理の途中経過が必要なときにご利用ください）
 ## 11getUsers.js
@@ -22,12 +22,12 @@
 プロジェクト一覧を出力する => projectIDs.json
 ## 13getPjMember.js
 ### 前提条件
-02getProjectIDs.js が実行済み
+12getProjectIDs.js が実行済み
 ### 機能
 プロジェクトに参加しているユーザー一覧を出力する => pjMember.json, pjMember.csv
 ## 14usersForDelete.js
 ### 前提条件
-01getUsers.js, 03getPjMember.js が実行済み
+11getUsers.js, 13getPjMember.js が実行済み
 ### 機能
 プロジェクトに参加していないユーザーを出力する　=> usersForDelete.csv
 # 環境変数
